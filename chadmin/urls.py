@@ -19,5 +19,6 @@ from careerhub import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', views.home, name='base')
+    url(r'^$', views.home, name='base'),
+    url(r'^surveys/', views.surveys, name='surveys')
 ]

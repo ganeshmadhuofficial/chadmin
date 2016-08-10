@@ -9,12 +9,18 @@ class Market(models.Model):
     code          = models.CharField(max_length=255,null=False)
     currency_code = models.CharField(max_length=255,null=False)
 
+    def __str__(self):
+        return self.name
+
 class Locale(models.Model):
     class Meta:
         db_table = '"locales"'
     name     = models.CharField(max_length=255,null=False)
     code     = models.CharField(max_length=255,null=False)
     mit_code = models.CharField(max_length=255,null=False)
+
+    def __str__(self):
+        return self.name
 
 class SourceType(models.Model):
     class Meta:

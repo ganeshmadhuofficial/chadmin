@@ -1,0 +1,63 @@
+- model: careerhub.SourceType
+  pk: 1
+  fields:
+    name: Unicon
+    reid_min: 1000
+    reid_max: 9999
+    group_name: Partners
+
+- model: careerhub.SourceType
+  pk: 2
+  fields:
+    name: Stuorg
+    reid_min: 10000
+    reid_max: 19999
+    group_name: Partners
+
+- model: careerhub.SourceType
+  pk: 3
+  fields:
+    name: Barpar
+    reid_min: 20000
+    reid_max: 29999
+    group_name: Partners
+
+- model: careerhub.SourceType
+  pk: 4
+  fields:
+    name: Paypar
+    reid_min: 30000
+    reid_max: 39999
+    group_name: Partners
+
+- model: careerhub.SourceType
+  pk: 5
+  fields:
+    name: Social
+    reid_min: 40000
+    reid_max: 49999
+    group_name: Social
+
+- model: careerhub.SourceType
+  pk: 6
+  fields:
+    name: Ambass
+    reid_min: 50000
+    reid_max: 59999
+    group_name: Other
+
+- model: careerhub.SourceType
+  pk: 7
+  fields:
+    name: Ownres
+    reid_min: 60000
+    reid_max: 69999
+    group_name: Other
+
+- model: careerhub.SourceType
+  pk: 8
+  fields:
+    name: Other
+    reid_min: 70000
+    reid_max: 79999
+    group_name: Other

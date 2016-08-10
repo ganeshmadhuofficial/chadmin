@@ -1,0 +1,23 @@
+{% extends "careerhub/base.html" %}
+{% block content %}
+  {% if surveys %}
+      <table class="table table-bordered table-striped table-hover">
+          <thead>
+            <th>Name</th>
+            <th>Reid Min</th>
+            <th>Reid Max</th>
+          </thead>
+      {% for survey in surveys %}
+          <tbody>
+           <tr>
+             <td> {{ survey.name }} </td>
+             <td> {{ survey.reid_min }} </td>
+             <td> {{ survey.reid_max }} </td>
+           </tr>
+          </tbody>
+      {% endfor %}
+      </table>
+  {% else %}
+      <p>No surveys are available.</p>
+  {% endif %}
+{% endblock %}
