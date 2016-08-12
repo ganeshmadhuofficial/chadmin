@@ -42,8 +42,11 @@ class Survey(models.Model):
     locale     = models.ForeignKey(Locale)
     is_global  = models.BooleanField(default=False)
     is_special = models.BooleanField(default=False)
-    begin_at   = models.CharField(max_length=200,null=True)
-    end_at     = models.CharField(max_length=200,null=True)
+    begin_at   = models.CharField(max_length=200,blank=True)
+    end_at     = models.CharField(max_length=200,blank=True)
+
+    def __str__(self):
+    	return self.name
 
 class Distribution(models.Model):
     class Meta:
@@ -55,3 +58,6 @@ class Distribution(models.Model):
     is_default     = models.BooleanField(default=False)
     skip_opt_in    = models.BooleanField(default=False)
     skip_reid      = models.BooleanField(default=False)
+  
+    def __str_(self):
+	return self.name
