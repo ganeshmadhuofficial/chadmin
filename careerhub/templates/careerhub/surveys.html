@@ -1,18 +1,22 @@
 {% extends "careerhub/base.html" %}
 {% block content %}
-  {% if surveys %}
+  {% if latest_surveys %}
       <table class="table table-bordered table-striped table-hover">
           <thead>
             <th>Name</th>
-            <th>Reid Min</th>
-            <th>Reid Max</th>
+            <th>URL</th>
+            <th>Market</th>
+            <th>Locale</th>
+            <th>Actions</th>
           </thead>
-      {% for survey in surveys %}
+      {% for survey in latest_surveys %}
           <tbody>
            <tr>
              <td> {{ survey.name }} </td>
-             <td> {{ survey.reid_min }} </td>
-             <td> {{ survey.reid_max }} </td>
+             <td> {{ survey.url }} </td>
+             <td> {{ survey.market }} </td>
+             <td> {{ survey.locale }} </td>
+             <td><a href="{% url 'survey' pk=survey.id %}">Edit</a></td>
            </tr>
           </tbody>
       {% endfor %}

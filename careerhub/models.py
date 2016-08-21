@@ -48,6 +48,10 @@ class Survey(models.Model):
     def __str__(self):
     	return self.name
 
+    def __unicode__(self):
+        return unicode(self.name)
+
+
 class Distribution(models.Model):
     class Meta:
         db_table = '"distributions"'
@@ -58,6 +62,6 @@ class Distribution(models.Model):
     is_default     = models.BooleanField(default=False)
     skip_opt_in    = models.BooleanField(default=False)
     skip_reid      = models.BooleanField(default=False)
-  
+
     def __str_(self):
 	return self.name
