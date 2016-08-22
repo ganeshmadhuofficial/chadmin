@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1> {{instance.name}} </h1>
+
+  <p> Name: {{instance.name}} </p>
+  <p> Survey: {{instance.survey}} </p>
+  <p> SourceType: {{instance.source_type}} </p>
+  <p> Reid: {{instance.reid}} </p>
+
+  <div class="row">
+    <a class="btn btn-primary btn-xs" href="{% url 'distributions:distribution_update' pk=instance.id %}"> Edit </a>
+  </div>
+{% endblock %}

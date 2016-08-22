@@ -20,5 +20,6 @@ from surveys import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.home, name='base'),
-    url(r'^surveys/', include("surveys.urls",namespace='surveys'))
+    url(r'^surveys/', include("surveys.urls",namespace='surveys')),
+    url(r'^distributions/', include("distributions.urls", namespace="distributions"))
 ]

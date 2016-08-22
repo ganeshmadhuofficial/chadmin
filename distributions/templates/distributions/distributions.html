@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+  {% if latest_distributions %}
+      <table class="table table-bordered table-striped table-hover">
+          <thead>
+            <th>Name</th>
+            <th>Survey</th>
+            <th>SourceType</th>
+            <th>Reid</th>
+            <th>Actions</th>
+          </thead>
+      {% for distribution in latest_distributions %}
+          <tbody>
+           <tr>
+             <td> {{ distribution.name }} </td>
+             <td> {{ distribution.survey }} </td>
+             <td> {{ distribution.source_type }} </td>
+             <td> {{ distribution.reid }} </td>
+             <td>
+                <a href="{% url 'distributions:distribution_detail' pk=distribution.id %}"> Show </a>
+                <a href="{% url 'distributions:distribution_update' pk=distribution.id %}"> Edit </a>
+                <a href="{% url 'distributions:distribution_delete' pk=distribution.id %}"> Delete </a>
+              </td>
+           </tr>
+          </tbody>
+      {% endfor %}
+      </table>
+  {% else %}
+      <p>No distributions are available.</p>
+  {% endif %}
+
+  <div class="row">
+    <a class="btn btn-primary btn-xs" href="{% url 'distributions:distribution_create' %}"> Create </a>
+  </div>
+{% endblock %}
