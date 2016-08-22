@@ -1,4 +1,4 @@
-{% extends "surveys/base.html" %}
+{% extends "base.html" %}
 {% block content %}
 <form action="{% url 'surveys:survey_create' %}" method="POST">
     {% csrf_token %}

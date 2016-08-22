@@ -10,8 +10,8 @@ from .models import Survey
 # Create your views here.
 
 def home(request):
-  template = loader.get_template('surveys/base.html')
-  return render(request,'surveys/base.html')
+  template = loader.get_template('base.html')
+  return render(request,'base.html')
 
 class SurveysView(generic.ListView):
   template_name = 'surveys/surveys.html'
