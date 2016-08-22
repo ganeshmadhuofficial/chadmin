@@ -1,4 +1,4 @@
-{% extends "careerhub/base.html" %}
+{% extends "surveys/base.html" %}
 {% block content %}
 <form action="{% url 'survey_update' pk=instance.id %}" method="POST">
     {% csrf_token %}

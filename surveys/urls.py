@@ -1,6 +1,6 @@
 from django.conf.urls import url
 from .models import *
-from careerhub import views
+from surveys import views
 
 urlpatterns = [
   url(r'^$', views.SurveysView.as_view(), name='surveys'),

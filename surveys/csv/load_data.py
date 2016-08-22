@@ -7,9 +7,9 @@ sys.path.append(os.path.abspath(os.path.dirname(__name__)))
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "chadmin.settings")
 django.setup()
 
-from careerhub.models import *
+from surveys.models import *
 
-markets_file = os.path.join('careerhub','csv','markets.csv')
+markets_file = os.path.join('surveys','csv','markets.csv')
 with open(markets_file, 'r+') as csvfile:
     reader = csv.reader(csvfile)
     try:
@@ -23,7 +23,7 @@ with open(markets_file, 'r+') as csvfile:
         sys.exit('file %s, line %d: %s' % (filename, reader.line_num, e))
 
 
-locales_file = os.path.join('careerhub','csv','locales.csv')
+locales_file = os.path.join('surveys','csv','locales.csv')
 with open(locales_file, 'r+') as csvfile:
     reader = csv.reader(csvfile)
     try:

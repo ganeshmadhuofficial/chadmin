@@ -4,7 +4,7 @@ from django.db import models
 
 class Market(models.Model):
     class Meta:
-        db_table = '"markets"'
+        db_table = "markets"
     name          = models.CharField(max_length=255,null=False)
     code          = models.CharField(max_length=255,null=False)
     currency_code = models.CharField(max_length=255,null=False)
@@ -14,7 +14,7 @@ class Market(models.Model):
 
 class Locale(models.Model):
     class Meta:
-        db_table = '"locales"'
+        db_table = "locales"
     name     = models.CharField(max_length=255,null=False)
     code     = models.CharField(max_length=255,null=False)
     mit_code = models.CharField(max_length=255,null=False)
@@ -24,7 +24,7 @@ class Locale(models.Model):
 
 class SourceType(models.Model):
     class Meta:
-        db_table = '"source_types"'
+        db_table =  "source_types"
     name       = models.CharField(max_length=255,null=False)
     reid_min   = models.IntegerField(null=False)
     reid_max   = models.IntegerField(null=False)
@@ -35,8 +35,8 @@ class SourceType(models.Model):
 
 class Survey(models.Model):
     class Meta:
-        db_table = '"surveys"'
-    name       = models.CharField(max_length=255,null=False)
+        db_table = "surveys"
+    name       = models.CharField(max_length=255,null=False,unique=True)
     url        = models.CharField(max_length=255,null=False)
     market     = models.ForeignKey(Market)
     locale     = models.ForeignKey(Locale)
@@ -54,8 +54,8 @@ class Survey(models.Model):
 
 class Distribution(models.Model):
     class Meta:
-        db_table = '"distributions"'
-    name           = models.CharField(max_length=255,null=False)
+        db_table = "distributions"
+    name           = models.CharField(max_length=255,null=False,unique=True)
     survey         = models.ForeignKey(Survey)
     source_type    = models.ForeignKey(SourceType)
     reid           = models.IntegerField(null=False)

@@ -1,4 +1,4 @@
-- model: careerhub.SourceType
+- model: surveys.SourceType
   pk: 1
   fields:
     name: Unicon
@@ -6,7 +6,7 @@
     reid_max: 9999
     group_name: Partners
 
-- model: careerhub.SourceType
+- model: surveys.SourceType
   pk: 2
   fields:
     name: Stuorg
@@ -14,7 +14,7 @@
     reid_max: 19999
     group_name: Partners
 
-- model: careerhub.SourceType
+- model: surveys.SourceType
   pk: 3
   fields:
     name: Barpar
@@ -22,7 +22,7 @@
     reid_max: 29999
     group_name: Partners
 
-- model: careerhub.SourceType
+- model: surveys.SourceType
   pk: 4
   fields:
     name: Paypar
@@ -30,7 +30,7 @@
     reid_max: 39999
     group_name: Partners
 
-- model: careerhub.SourceType
+- model: surveys.SourceType
   pk: 5
   fields:
     name: Social
@@ -38,7 +38,7 @@
     reid_max: 49999
     group_name: Social
 
-- model: careerhub.SourceType
+- model: surveys.SourceType
   pk: 6
   fields:
     name: Ambass
@@ -46,7 +46,7 @@
     reid_max: 59999
     group_name: Other
 
-- model: careerhub.SourceType
+- model: surveys.SourceType
   pk: 7
   fields:
     name: Ownres
@@ -54,7 +54,7 @@
     reid_max: 69999
     group_name: Other
 
-- model: careerhub.SourceType
+- model: surveys.SourceType
   pk: 8
   fields:
     name: Other

@@ -15,10 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import include,url
 from django.contrib import admin
-from careerhub import views
+from surveys import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.home, name='base'),
-    url(r'^surveys/', include("careerhub.urls"))
+    url(r'^surveys/', include("surveys.urls"))
 ]

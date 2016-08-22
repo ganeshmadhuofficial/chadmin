@@ -1,5 +1,5 @@
 from django import forms
-from careerhub import models
+from surveys import models
 
 class SurveyForm(forms.ModelForm):
   class Meta:

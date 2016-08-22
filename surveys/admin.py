@@ -1,5 +1,5 @@
 from django.contrib import admin
-from careerhub.models import *
+from surveys.models import *
 
 # Register your models here.
 
