@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
+from django.contrib import messages
 from django.template import loader
 from django.views import generic
 from surveys.forms import SurveyForm
@@ -25,6 +26,7 @@ def SurveyCreate(request):
   if form.is_valid():
     instance = form.save(commit=False)
     instance.save()
+    messages.success(request, "Successfully Created")
     return redirect("surveys:surveys")
   context = {
     "form": form,
@@ -45,6 +47,7 @@ def SurveyUpdate(request,pk):
   if form.is_valid():
     instance = form.save(commit=False)
     instance.save()
+    messages.success(request, "Successfully Updated")
     return redirect('surveys:surveys')
   context = {
     "form": form,
@@ -55,6 +58,7 @@ def SurveyUpdate(request,pk):
 def SurveyDelete(request,pk):
   instance = get_object_or_404(Survey, id=pk)
   instance.delete()
+  messages.success(request, "Successfully Deleted")
   return redirect("surveys:surveys")
 
 def surveys(request):
