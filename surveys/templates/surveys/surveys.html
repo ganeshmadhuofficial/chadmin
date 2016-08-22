@@ -16,7 +16,11 @@
              <td> {{ survey.url }} </td>
              <td> {{ survey.market }} </td>
              <td> {{ survey.locale }} </td>
-             <td><a href="{% url 'survey' pk=survey.id %}">Edit</a></td>
+             <td>
+                <a href="{% url 'surveys:survey_detail' pk=survey.id %}"> Show </a>
+                <a href="{% url 'surveys:survey_update' pk=survey.id %}"> Edit </a>
+                <a href="{% url 'surveys:survey_delete' pk=survey.id %}"> Delete </a>
+              </td>
            </tr>
           </tbody>
       {% endfor %}
@@ -24,4 +28,8 @@
   {% else %}
       <p>No surveys are available.</p>
   {% endif %}
+
+  <div class="row">
+    <a class="btn btn-primary btn-xs" href="{% url 'surveys:survey_create' %}"> Create </a>
+  </div>
 {% endblock %}

@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from django.template import loader
 from django.views import generic
@@ -18,34 +19,43 @@ class SurveysView(generic.ListView):
   def get_queryset(self):
       return Survey.objects.all()
 
-class SurveyCreate(generic.edit.CreateView):
-  model  = Survey
-  fields = ['name','url']
-
-def SurveyView(request,pk):
-  model = Survey
-  template_name = 'surveys/survey_form.html'
-  my_record = Survey.objects.get(id=pk)
-  form = SurveyForm(instance=my_record)
-  context = {
-    "form": form,
-    "instance": my_record
-  }
-  success_url = '/surveys/'
-  return render(request,template_name,context)
-
-def SurveyUpdate(request,pk):
-  my_record = Survey.objects.get(id=pk)
+def SurveyCreate(request):
   form = SurveyForm(request.POST or None)
-  template_name = 'surveys/survey_form.html'
+
   if form.is_valid():
     instance = form.save(commit=False)
     instance.save()
+    return redirect("surveys:surveys")
   context = {
     "form": form,
-    "instance": my_record
+  }
+  return render(request, "surveys/new.html", context)
+
+def SurveyView(request,pk):
+  template_name = 'surveys/show.html'
+  context = {
+    "instance": Survey.objects.get(id=pk)
   }
   return render(request,template_name,context)
+
+def SurveyUpdate(request,pk):
+  instance = Survey.objects.get(id=pk)
+  form = SurveyForm(request.POST or None, instance=instance)
+  template_name = 'surveys/edit.html'
+  if form.is_valid():
+    instance = form.save(commit=False)
+    instance.save()
+    return redirect('surveys:surveys')
+  context = {
+    "form": form,
+    "instance": instance
+  }
+  return render(request,template_name,context)
+
+def SurveyDelete(request,pk):
+  instance = get_object_or_404(Survey, id=pk)
+  instance.delete()
+  return redirect("surveys:surveys")
 
 def surveys(request):
   context = dict()

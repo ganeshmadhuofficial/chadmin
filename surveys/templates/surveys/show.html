@@ -1,0 +1,13 @@
+{% extends "surveys/base.html" %}
+{% block content %}
+  <h1> {{instance.name}} </h1>
+
+  <p> Name: {{instance.name}} </p>
+  <p> URL: {{instance.url}} </p>
+  <p> Market: {{instance.market}} </p>
+  <p> Locale: {{instance.locale}} </p>
+
+  <div class="row">
+    <a class="btn btn-primary btn-xs" href="{% url 'surveys:survey_update' pk=instance.id %}"> Edit </a>
+  </div>
+{% endblock %}
