@@ -1,6 +1,6 @@
 {% extends "surveys/base.html" %}
 {% block content %}
-<form action="{% url 'survey_create' %}" method="POST">
+<form action="{% url 'surveys:survey_create' %}" method="POST">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Save" />
