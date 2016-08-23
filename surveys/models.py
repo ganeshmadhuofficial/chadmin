@@ -1,6 +1,10 @@
 from __future__ import unicode_literals
 
+from django.utils import timezone
+from django.db.models.signals import pre_save
 from django.db import models
+
+import re
 
 class Market(models.Model):
     class Meta:
@@ -44,13 +48,15 @@ class Survey(models.Model):
     is_special = models.BooleanField(default=False)
     begin_at   = models.CharField(max_length=200,blank=True)
     end_at     = models.CharField(max_length=200,blank=True)
+    created    = models.DateTimeField(default=timezone.now,null=True)
+    updated    = models.DateTimeField(auto_now=True,null=True)
 
     def __str__(self):
     	return self.name
 
-    def __unicode__(self):
-        return unicode(self.name)
-
+    def clean(self):
+        if self.name:
+            self.name = self.name.strip()
 
 class Distribution(models.Model):
     class Meta:
@@ -62,6 +68,14 @@ class Distribution(models.Model):
     is_default     = models.BooleanField(default=False)
     skip_opt_in    = models.BooleanField(default=False)
     skip_reid      = models.BooleanField(default=False)
+    created        = models.DateTimeField(default=timezone.now,null=True)
+    updated        = models.DateTimeField(auto_now=True,null=True)
 
     def __str_(self):
 	return self.name
+
+
+def pre_save_survey(sender,instance,*args,**kwargs):
+    instance.name = re.sub("\s\s+", " ", instance.name).strip()
+
+pre_save.connect(pre_save_survey, sender=Survey)

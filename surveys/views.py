@@ -25,6 +25,7 @@ def SurveyCreate(request):
 
   if form.is_valid():
     instance = form.save(commit=False)
+    instance.clean()
     instance.save()
     messages.success(request, "Successfully Created")
     return redirect("surveys:surveys")
