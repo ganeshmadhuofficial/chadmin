@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.contrib import messages
 from django.template import loader
 from django.views import generic
+from django.core.exceptions import ValidationError
 from surveys.forms import SurveyForm
 from .models import Survey
 
@@ -47,9 +48,13 @@ def SurveyUpdate(request,pk):
   template_name = 'surveys/edit.html'
   if form.is_valid():
     instance = form.save(commit=False)
-    instance.save()
-    messages.success(request, "Successfully Updated")
-    return redirect('surveys:surveys')
+    try:
+        instance.save()
+        instance.clean()
+        messages.success(request, "Successfully Updated")
+        return redirect('surveys:surveys')
+    except ValidationError, e:
+        print e
   context = {
     "form": form,
     "instance": instance

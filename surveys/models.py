@@ -3,6 +3,8 @@ from __future__ import unicode_literals
 from django.utils import timezone
 from django.db.models.signals import pre_save
 from django.db import models
+from django.core.exceptions import ValidationError
+from django.core.validators import RegexValidator
 
 import re
 
@@ -54,10 +56,6 @@ class Survey(models.Model):
     def __str__(self):
     	return self.name
 
-    def clean(self):
-        if self.name:
-            self.name = self.name.strip()
-
 class Distribution(models.Model):
     class Meta:
         db_table = "distributions"
@@ -74,8 +72,9 @@ class Distribution(models.Model):
     def __str_(self):
 	return self.name
 
-
 def pre_save_survey(sender,instance,*args,**kwargs):
     instance.name = re.sub("\s\s+", " ", instance.name).strip()
+    instance.url  = re.sub("\s\s+", " ", instance.url).strip()
+
 
 pre_save.connect(pre_save_survey, sender=Survey)
