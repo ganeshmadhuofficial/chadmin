@@ -40,6 +40,11 @@ class SourceType(models.Model):
         return self.name
 
 class Survey(models.Model):
+    Statuses = (
+        ('online','online'),
+        ('paused','paused'),
+        ('offline','offline')
+    )
     class Meta:
         db_table = "surveys"
     name       = models.CharField(max_length=255,null=False,unique=True)
@@ -50,6 +55,7 @@ class Survey(models.Model):
     is_special = models.BooleanField(default=False)
     begin_at   = models.CharField(max_length=200,blank=True)
     end_at     = models.CharField(max_length=200,blank=True)
+    status     = models.CharField(max_length=50,choices=Statuses,default='offline')
     created    = models.DateTimeField(default=timezone.now,null=True)
     updated    = models.DateTimeField(auto_now=True,null=True)
 

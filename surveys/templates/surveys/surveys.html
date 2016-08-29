@@ -7,6 +7,7 @@
             <th>URL</th>
             <th>Market</th>
             <th>Locale</th>
+            <th>Status</th>
             <th>Actions</th>
           </thead>
       {% for survey in latest_surveys %}
@@ -16,6 +17,7 @@
              <td> {{ survey.url }} </td>
              <td> {{ survey.market }} </td>
              <td> {{ survey.locale }} </td>
+             <td> {{ survey.status }} </td>
              <td>
                 <a href="{% url 'surveys:survey_detail' pk=survey.id %}"> Show </a>
                 <a href="{% url 'surveys:survey_update' pk=survey.id %}"> Edit </a>
