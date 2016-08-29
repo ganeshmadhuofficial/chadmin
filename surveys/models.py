@@ -60,7 +60,7 @@ class Survey(models.Model):
     updated    = models.DateTimeField(auto_now=True,null=True)
 
     def __str__(self):
-    	return self.name
+        return self.name
 
 class Distribution(models.Model):
     class Meta:
@@ -75,12 +75,26 @@ class Distribution(models.Model):
     created        = models.DateTimeField(default=timezone.now,null=True)
     updated        = models.DateTimeField(auto_now=True,null=True)
 
-    def __str_(self):
-	return self.name
+    def __str__(self):
+	    return self.name
 
 def pre_save_survey(sender,instance,*args,**kwargs):
     instance.name = re.sub("\s\s+", " ", instance.name).strip()
     instance.url  = re.sub("\s\s+", " ", instance.url).strip()
 
-
 pre_save.connect(pre_save_survey, sender=Survey)
+
+def set_reid(sender,instance,*args,**kwargs):
+    if instance.reid is None:
+        dists = Distribution.objects.filter(survey=instance.survey, source_type=instance.source_type).values_list('reid', flat=True)
+        stype = SourceType.objects.get(name=instance.source_type)
+        if dists:
+            for i in range(stype.reid_min, stype.reid_max+1):
+                if i in dists:
+                    continue
+                instance.reid = i
+                break
+        else:
+            instance.reid = stype.reid_min
+
+pre_save.connect(set_reid, sender=Distribution)
